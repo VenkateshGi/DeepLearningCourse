@@ -15,4 +15,18 @@ test_x/=255.0
 
 #step1
 
-model = tf.keras.models.Sequential
+model = tf.keras.Models.Sequential([tf.keras.Layers.Conv2D(60,(3,3), input_shape = (28,28,1), activation = 'relu'),
+                                    tf.keras.Layers.MaxPooling2D(2,2),
+                                    tf.keras.Layers.Conv2D(60,(3,3), activation = 'relu'),
+                                    tf.keras.Layers.MaxPooling2D(2,2),
+                                    tf.keras.Layers.Dense(250, activation = 'relu'),
+                                    tf.keras.Layers.Dense(10, activation = 'softmax')])
+#ster 2
+
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+#step 3
+
+model.fit(train_x, train_y, epochs = 5)
+
+test_loss = model.evaluate(test_images, test_labels)
