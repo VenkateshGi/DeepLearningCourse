@@ -1,7 +1,5 @@
 import tensorflow as tf
 model = tf.keras.models.Sequential([
-    # Note the input shape is the desired size of the image 300x300 with 3 bytes color
-    # This is the first convolution
     tf.keras.layers.Conv2D(16, (3,3), activation='relu', input_shape=(300, 300, 3)),
     tf.keras.layers.MaxPooling2D(2, 2),
     # The second convolution
