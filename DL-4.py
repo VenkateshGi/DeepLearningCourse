@@ -10,9 +10,8 @@ mnist = tf.keras.datasets.fashion_mnist
 train_x = train_x.reshape(60000,28,28,1)
 test_x = test_x.reshape(10000,28,28,1)
 
-train_x/=255.0
-test_x/=255.0
-
+train_x/=255
+test_x/=255
 #step1
 
 model = tf.keras.Models.Sequential([tf.keras.Layers.Conv2D(60,(3,3), input_shape = (28,28,1), activation = 'relu'),
