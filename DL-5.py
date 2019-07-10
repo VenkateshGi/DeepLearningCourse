@@ -5,7 +5,7 @@ model = tf.keras.models.Sequential([
     # The second convolution
     tf.keras.layers.Conv2D(32, (3,3), activation='relu'),
     tf.keras.layers.MaxPooling2D(2,2),
-    # The third convolution
+
     tf.keras.layers.Conv2D(64, (3,3), activation='relu'),
     tf.keras.layers.MaxPooling2D(2,2),
     # The fourth convolution
@@ -30,7 +30,6 @@ model.compile(loss='binary_crossentropy',
               
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
-# All images will be rescaled by 1./255
 train_datagen = ImageDataGenerator(rescale=1/255)
 validation_datagen = ImageDataGenerator(rescale=1/255)
 
