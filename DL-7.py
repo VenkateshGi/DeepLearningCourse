@@ -53,3 +53,26 @@ train_datagen = ImageDataGenerator(rescale = 1/255,
                                    zoom_range = 0.2,
                                    horizontal_flip = True,
                                    fill_mode = 'nearest')
+validation_datagen = ImageDataGenerator(rescale=1/255)
+
+train_generator = train_datagen.flow_from_directory(
+        '/tmp/horse-or-human/',  # This is the source directory for training images
+        target_size=(300, 300),  # All images will be resized to 150x150
+        batch_size=128,
+        # Since we use binary_crossentropy loss, we need binary labels
+        class_mode='binary')
+validation_generator = validation_datagen.flow_from_directory(
+        '/tmp/validation-horse-or-human/',  # This is the source directory for training images
+        target_size=(300, 300),  # All images will be resized to 150x150
+        batch_size=32,
+        # Since we use binary_crossentropy loss, we need binary labels
+        class_mode='binary')
+#########
+#train the model
+history = model.fit_generator(
+      train_generator,
+      steps_per_epoch=8,  
+      epochs=100,
+      verbose=1,
+      validation_data = validation_generator,
+      validation_steps=8)
